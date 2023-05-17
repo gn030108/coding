@@ -34,3 +34,19 @@ body{
     justify-content: space-between;
     padding: 1em;
 }
+.task-done{
+    text-decoration: line-through;
+}
+
+.size{
+    width: 2em;
+    height: 1em;
+    border: none;
+    background-color: white;
+}
+.check{
+    color: chartreuse;
+}
+.trash{
+    color: red;
+}
