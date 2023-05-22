@@ -3,6 +3,7 @@ body{
     background-image: url(images/background.avif);
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Cinzel', serif;
 }
 .container {
     background-color: white;
@@ -13,8 +14,13 @@ body{
     height: 100%;
     min-height: 100vh;
   }
+input [type="text" i]{
+    padding: 1px 2px;
+}
+
 .task-area{
     border: 1px solid lightgray;
+    margin-top: 16px;
 }
 .task-tabs{
     display: flex;
