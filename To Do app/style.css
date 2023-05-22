@@ -50,3 +50,7 @@ body{
 .trash{
     color: red;
 }
+
+.task-tabs div{
+    cursor: pointer;
+}

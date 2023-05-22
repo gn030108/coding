@@ -14,11 +14,19 @@
 
 
 let taskInput = document.getElementById("task-input");
-let addButton = document.getElementById("add-button")
+let addButton = document.getElementById("add-button");
+let tabs =document.querySelectorAll(".task-tabs div")
 let taskList = []
+let mode ="all"
+let filterList = []
 
 
 
+for(let i=1;i<tabs.length;i++){
+    tabs[i].addEventListener("click",function(event)
+    {filter(event)})
+}
+console.log(tabs)
 
 
 addButton.addEventListener("click",addTask);
@@ -35,30 +43,39 @@ function addTask(){
 }
 
 function render(){
+    let list =[];
+
+    if(mode == "all"){
+        list = taskList;
+    }
+    else if (mode == "notDone" || mode =="Done"){
+        list = filterList;
+    }
+    
+
     let resultHTML = '';
 
-
-    for(let i = 0; i < taskList.length; i++){
-        if(taskList[i].isComplete == true){
+    for(let i = 0; i < list.length; i++){
+        if(list[i].isComplete == true){
             resultHTML += `<div class="task">
-            <div class="task-done">${taskList[i].taskContent}</div>
+            <div class="task-done">${list[i].taskContent}</div>
             <div>
-                <button onclick="toggleComplete('${taskList[i].id}')" class="size check">
+                <button onclick="toggleComplete('${list[i].id}')" class="size check">
                     <i class="fa-solid fa-check"></i>
                 </button>
-                <button onclick="deleteTask('${taskList[i].id}')" class="size trash">
+                <button onclick="deleteTask('${list[i].id}')" class="size trash">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
             </div>
         </div>`;
         }else{
             resultHTML += `<div class="task">
-            <div >${taskList[i].taskContent}</div>
+            <div >${list[i].taskContent}</div>
             <div>
-                <button onclick="toggleComplete('${taskList[i].id}')" class="size check">
+                <button onclick="toggleComplete('${list[i].id}')" class="size check">
                     <i class="fa-solid fa-check"></i>
                 </button>
-                <button onclick="deleteTask(${taskList[i].id})" class="size trash">
+                <button onclick="deleteTask(${list[i].id})" class="size trash">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
             </div>
@@ -91,6 +108,36 @@ function deleteTask(id){
     }
     render();
 }
+
+function filter(event){
+    mode=event.target.id
+    filterList = [];
+
+    document.
+
+    console.log("클릭댐", event.target.id)
+    if(mode == "all"){
+        render()
+    }
+    else if(mode == "notDone"){
+        for(let i=0; i<taskList.length;i++){
+            if(taskList[i].isComplete == false){
+                filterList.push(taskList[i]);
+            }
+        }
+        
+        render();
+    }
+    else if (mode == "Done"){
+        for (let i=0;i<taskList.length;i++){
+            if(taskList[i].isComplete == true){
+                filterList.push(taskList[i])
+            }
+        }
+        render();
+    }
+}
+console.log(filterList);
 
 function randomIdGenerate(){
     return '_' + Math.random().toString(36).substr(2,9);
