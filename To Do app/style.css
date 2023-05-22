@@ -21,6 +21,7 @@ input [type="text" i]{
 .task-area{
     border: 1px solid lightgray;
     margin-top: 16px;
+    
 }
 .task-tabs{
     display: flex;
@@ -39,28 +40,52 @@ input [type="text" i]{
     top: 52px;
     padding: 0px;
 }
-.task{
+.task {
     display: flex;
     justify-content: space-between;
-    padding: 1em;
-}
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    position: relative;
+  }
+  
 .task-done{
     text-decoration: line-through;
 }
 
-.size{
-    width: 2em;
-    height: 1em;
-    border: none;
-    background-color: white;
-}
-.check{
-    color: chartreuse;
-}
-.trash{
-    color: red;
+.task span{
+    padding: 1rem;
 }
 
 .task-tabs div{
     cursor: pointer;
 }
+#add-button{
+    border: none;
+    background-color:bisque;
+    color : black;
+}
+#task-input{
+    width: 20em;
+}
+
+.button-box button {
+    height: 100%;
+    border: none;
+    width: 5em;
+    margin: 0;
+    background-color: white;
+    transition: 0.5s;
+  }
+  .button-box button:first-child:hover {
+    background-color: greenyellow;
+  }
+  .button-box button:nth-child(2):hover {
+    background-color: rgb(255, 0, 0, 0.3);
+  }
+  .fa-check {
+    color: limegreen;
+  }
+  
+  .fa-trash {
+    color: red;
+}  

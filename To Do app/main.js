@@ -55,31 +55,23 @@ function render(){
 
     let resultHTML = '';
 
-    for(let i = 0; i < list.length; i++){
-        if(list[i].isComplete == true){
-            resultHTML += `<div class="task">
-            <div class="task-done">${list[i].taskContent}</div>
-            <div>
-                <button onclick="toggleComplete('${list[i].id}')" class="size check">
-                    <i class="fa-solid fa-check"></i>
-                </button>
-                <button onclick="deleteTask('${list[i].id}')" class="size trash">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-            </div>
-        </div>`;
-        }else{
-            resultHTML += `<div class="task">
-            <div >${list[i].taskContent}</div>
-            <div>
-                <button onclick="toggleComplete('${list[i].id}')" class="size check">
-                    <i class="fa-solid fa-check"></i>
-                </button>
-                <button onclick="deleteTask(${list[i].id})" class="size trash">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-            </div>
-        </div>`;
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].isComplete) {
+            resultHTML += `<div class="task task-done" id="${list[i].id}">
+                <span>${list[i].content}</span>
+                <div class="button-box">
+                    <button onclick="toggleDone('${list[i].id}')"><i class="fas fa-undo-alt"></i></button>
+                    <button onclick="deleteTask('${list[i].id}')"><i class="fa fa-trash"></i></button>
+                </div>
+            </div>`;
+        } else {
+            resultHTML += `<div class="task" id="${list[i].id}" >
+                <span>${list[i].content}</span>
+                <div class="button-box">
+                    <button onclick="toggleDone('${list[i].id}')"><i class="fa fa-check"></i></button>
+                    <button onclick="deleteTask('${list[i].id}')"><i class="fa fa-trash"></i></button>
+                </div>
+            </div>`;
         }
     }
 
@@ -87,7 +79,7 @@ function render(){
 }
 
 
-function toggleComplete(id){
+function toggleDone(id){
     console.log("id:",id);
     for(let i=0;i<taskList.length;i++){
         if(taskList[i].id == id){
