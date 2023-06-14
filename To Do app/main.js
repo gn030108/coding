@@ -32,9 +32,10 @@ console.log(tabs)
 addButton.addEventListener("click",addTask);
 
 function addTask(){
+    let taskValue = taskInput.value
     let task = {
         id:randomIdGenerate(),
-        taskContent : taskInput.value,
+        content: taskValue,
         isComplete: false
     }
     taskList.push(task);
