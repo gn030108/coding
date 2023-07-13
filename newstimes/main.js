@@ -6,7 +6,7 @@ menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByTopic(e
 
 
 const getLatestNews = async ()=>{
-    let url = new URL(`https://api.newscatcherapi.com/v2/latest_headlines?countries=kr&topic=sport`) 
+    let url = new URL(`https://api.newscatcherapi.com/v2/latest_headlines?countries=US&topic=business`) 
     console.log(url);
 
     let header = new Headers({'x-api-key':'Zsu2XyfqlWn1a9BC1A3uZJmvahuSdx0b8okQnM_y02E'})
@@ -37,7 +37,7 @@ const getNewsByTopic = async (event) => {
 
 const render = () =>{
     let newsHTML =''
-    newsHTML=news.map(item=>{
+    newsHTML=news.map((item)=>{
         return`<div class="row news">
         <div class="col-lg-4">
             <img class="news-img-size" src="${item.media}" alt="">
