@@ -16,6 +16,7 @@
 let taskInput = document.getElementById("task-input");
 let addButton = document.getElementById("add-button");
 let tabs =document.querySelectorAll(".task-tabs div")
+let underLine = document.getElementById("underLine")
 let taskList = []
 let mode ="all"
 let filterList = []
@@ -49,8 +50,13 @@ function render(){
     if(mode == "all"){
         list = taskList;
     }
-    else if (mode == "notDone" || mode =="Done"){
-        list = filterList;
+    else if(mode == "notDone"){
+        filterList = taskList.filter(task => !task.isComplete);
+        list = filterList
+    }
+    else if (mode == "Done"){
+        filterList = taskList.filter(task => task.isComplete);
+        list = filterList
     }
     
 
@@ -65,7 +71,8 @@ function render(){
                     <button onclick="deleteTask('${list[i].id}')"><i class="fa fa-trash"></i></button>
                 </div>
             </div>`;
-        } else {
+        } 
+        else {
             resultHTML += `<div class="task" id="${list[i].id}" >
                 <span>${list[i].content}</span>
                 <div class="button-box">
@@ -105,10 +112,13 @@ function deleteTask(id){
 function filter(event){
     mode=event.target.id
     filterList = [];
-
-    document.
-
     console.log("클릭댐", event.target.id)
+    if (event) {
+        underLine.style.width = event.target.offsetWidth + "px";
+        underLine.style.left = event.target.offsetLeft + "px";
+        underLine.style.top = event.target.offsetTop + (event.target.offsetHeight - 4) + "px";
+    } 
+    
     if(mode == "all"){
         render()
     }
@@ -118,7 +128,6 @@ function filter(event){
                 filterList.push(taskList[i]);
             }
         }
-        
         render();
     }
     else if (mode == "Done"){
